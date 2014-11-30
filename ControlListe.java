@@ -17,7 +17,7 @@ public class ControlListe implements ActionListener {
 int i;
 int j;
 int compt; 
-  
+
  
   public ControlListe(Fenetre fen) {
     this.fen = fen;    
@@ -26,7 +26,8 @@ int compt;
   
  
   public void actionPerformed(ActionEvent ev){	   
-	  
+
+	  fen.comptnombre=0;
 	  System.out.println("Veuillez placer un " +fen.liste.getSelectedItem());
 	
 	  for(int i=0;i<5;i++){
@@ -44,12 +45,11 @@ int compt;
 			if(compt==4 ){
 				fen.compFin=2;
 			}
-			System.out.println(fen.compFin);
 		}
 	  }
 	 
 	  fen.liste.removeItem(fen.liste.getSelectedItem());
-	 
+
 	
 											 
   }
