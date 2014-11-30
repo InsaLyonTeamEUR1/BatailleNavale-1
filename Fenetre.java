@@ -1,5 +1,4 @@
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.util.Vector;
@@ -9,11 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -32,24 +27,27 @@ public class Fenetre extends JFrame{
 	int[] order,tab;
 	JLabel l1, l2,l3,global,ci;
 	JButton[][] grille=  new JButton[10][10];
-    JButton[] grille2=  new JButton[100];
+    JButton[][] grille2=  new JButton[10][10];
 	Dimension taille = new Dimension(150,150);
 	JComboBox liste;
-    JRadioButton rb1 = new JRadioButton("Horizontale",true);
-    JRadioButton rb2 = new JRadioButton("Verticale",false);
+	ButtonGroup group = new ButtonGroup();
+    JRadioButton rb1 = new JRadioButton("Horizontale");
+    JRadioButton rb2 = new JRadioButton("Verticale");
 	boolean init=false;
 	 public ControlButton control;
 	 public ControlMenu controle;
 	 public ControlListe control1;
 	 ImageIcon image;
 	 int compteur;
+	int comptplace=0;
+	int comptnombre;
 	 String chaine ;
 	 int compFin;
 	 JMenuItem item1,item2;
 	 int k=0;
 	 float s;
 	 String u,monscore,bestScores;
-	 String[] items = { "Porte-avion : 5 cases", "Croiseur : 4 cases","Contre-torpilleurs : 3 cases","Sous-marin : 3 cases","Tropilleur : 2 cases" };
+	 String[] items = { "Porte-avion : 5 cases", "Croiseur : 4 cases","Contre-torpilleurs : 3 cases","Sous-marin : 3 cases","Torpilleur : 2 cases" };
 	 
 	 
 	 public Fenetre() {
@@ -121,23 +119,29 @@ public class Fenetre extends JFrame{
 		 menu.add(item2);
 		 barMenu.add(menu);
 		 setJMenuBar(barMenu);
-		 
-		
-		 
-		
-		    
-		 
-		
+
+
+
+
+
 		 liste=new JComboBox(items);
 		 liste.addActionListener(control1);
-         rb1.addActionListener(control1);
-         rb2.addActionListener(control1);
+		 group.add(rb1);
+		 rb1.addActionListener(control);
+		 group.add(rb2);
+		 rb2.addActionListener(control);
 		
+		// liste=new JComboBox(items);
+		// liste.addActionListener(control1);
+         //rb1.addActionListener(control1);
+         //rb2.addActionListener(control1);
+		 JTextField jtText = new JTextField("Grille Adversaire");
+		 JTextField jtText2 = new JTextField("                 ");
 		 
 		 JPanel pan = new JPanel(new GridLayout(11,11));
-
-		 JPanel pan1 = new JPanel(new GridLayout(3,1));
+		 JPanel pangauche = new JPanel();
          JPanel panboutton = new JPanel();
+
 
 		
 		 
@@ -151,7 +155,7 @@ public class Fenetre extends JFrame{
 		 	
 		 for(int i=0;i<10;i++){
 			 if(i==0){
-				 ci= new JLabel("           A");
+				 ci= new JLabel("          A");
 				 pan.add(ci);
 			 }
 			
@@ -204,30 +208,102 @@ public class Fenetre extends JFrame{
                 grille[i][j].setDisabledIcon(new ImageIcon("src/bateaux.jpg"));
             }
 
-			 
-								
-			 
-			
-		 
 		 }
-       /*  JPanel pan2 = new JPanel(new GridLayout(11,11));
-         for(int i=0;i<100;i++){
-             grille2[i]= new JButton();
-             pan2.add(grille2[i]);
 
-             grille2[i].addActionListener(control);
-             grille2[i].setIcon(new ImageIcon("src/mer.jpg"));
-         }*/
+
+        JPanel pan2 = new JPanel(new GridLayout(11,11));
+		 for(int i=0;i<11;i++){
+			 JLabel mi= new JLabel("          "+i);
+			 pan2.add(mi);
+		 }
+
+		 for(int i=0;i<10;i++){
+			 if(i==0){
+				 ci= new JLabel("          A");
+				 pan2.add(ci);
+			 }
+
+			 if(i==1){
+				 ci= new JLabel("          B");
+				 pan2.add(ci);
+			 }
+			 if(i==2){
+				 ci= new JLabel("          C");
+				 pan2.add(ci);
+			 }
+			 if(i==3){
+				 ci= new JLabel("          D");
+				 pan2.add(ci);
+			 }
+			 if(i==4){
+				 ci= new JLabel("          E");
+				 pan2.add(ci);
+			 }
+			 if(i==5){
+				 ci= new JLabel("          F");
+				 pan2.add(ci);
+			 }
+			 if(i==6){
+				 ci= new JLabel("          G");
+				 pan2.add(ci);
+			 }
+			 if(i==7){
+				 ci= new JLabel("          H");
+				 pan2.add(ci);
+			 }
+			 if(i==8){
+				 ci= new JLabel("          I");
+				 pan2.add(ci);
+			 }
+			 if(i==9){
+				 ci= new JLabel("          J");
+				 pan2.add(ci);
+			 }
+
+
+			 for(int j=0;j<10;j++){
+				 grille2[i][j]= new JButton();
+				grille2[i][j].setSize(20,20);
+
+				 pan2.add(grille2[i][j]);
+
+				 grille2[i][j].addActionListener(control);
+				 grille2[i][j].setIcon(new ImageIcon("src/mer.jpg"));
+
+			 }
+
+		 }
 		 
 		 // cr�ation de tous les composants graphiques de la fen�tre
+		 JPanel pandroite = new JPanel();
+		 JPanel pan6 = new JPanel();
          panboutton.add(rb1);
          panboutton.add(rb2);
 
-         pan1.add(liste);
-         pan1.add(panboutton);
-		 pan1.add(pan);
+         pangauche.setLayout(new BoxLayout(pangauche, BoxLayout.Y_AXIS));
+         pangauche.add(liste);
+         pangauche.add(panboutton);
+		 pangauche.add(pan);
+
+		 pan6.setLayout(new BoxLayout(pan6, BoxLayout.Y_AXIS));
+		 pan6.add(jtText);
+		 pan6.add(jtText2);
+		 pandroite.setLayout(new BoxLayout(pandroite, BoxLayout.Y_AXIS));
+		 pandroite.add(pan6);
+		 pandroite.add(pan2);
+
+         JPanel pan2grille = new JPanel();
+         pan2grille.setLayout(new BoxLayout(pan2grille, BoxLayout.LINE_AXIS));
+         pan2grille.add(pangauche);
+         pan2grille.add(pandroite);
+
+         JPanel pan4 = new JPanel();
+
+
+         pan4.add(pan2grille);
+
          //pan1.add(pan2,BorderLayout.EAST);
-		 setContentPane(pan1);
+		 setContentPane(pan4);
 		 
 		 
 	/*	
