@@ -48,7 +48,7 @@ int compt;
 		}
 	  }
 	 
-	  fen.liste.removeItem(fen.liste.getSelectedItem());
+	 
 
 	
 											 
