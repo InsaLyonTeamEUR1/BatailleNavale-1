@@ -31,8 +31,8 @@ public class Fenetre extends JFrame{
 	Dimension taille = new Dimension(150,150);
 	JComboBox liste;
 	ButtonGroup group = new ButtonGroup();
-    JRadioButton rb1 = new JRadioButton("Horizontale");
-    JRadioButton rb2 = new JRadioButton("Verticale");
+    JRadioButton rb1 = new JRadioButton("Vertical");
+    JRadioButton rb2 = new JRadioButton("Horizontal");
 	boolean init=false;
 	 public ControlButton control;
 	 public ControlMenu controle;
@@ -54,7 +54,7 @@ public class Fenetre extends JFrame{
 		  
 		     initAttribut();
 			 creerWidget();
-			 pack(); // Fixe la taille par d�faut
+			 pack(); // Fixe la taille par défaut
 			 setVisible(true); // Affiche la fenetre
 			 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Gestion de la fermeture
 			 }
@@ -135,17 +135,17 @@ public class Fenetre extends JFrame{
 		// liste.addActionListener(control1);
          //rb1.addActionListener(control1);
          //rb2.addActionListener(control1);
-		 JTextField jtText = new JTextField("Grille Adversaire");
-		 JTextField jtText2 = new JTextField("                 ");
+		 JTextField jtText = new JTextField("Grille Adversaire"); // Zone de text a droit ou il y a écrit Grille Adversaire
+		 JTextField jtText2 = new JTextField("                 "); // Zone de text mais vide, utulisé juste pour mettre a niveau les 2 grilles
 		 
-		 JPanel pan = new JPanel(new GridLayout(11,11));
-		 JPanel pangauche = new JPanel();
-         JPanel panboutton = new JPanel();
+		 JPanel pan = new JPanel(new GridLayout(11,11)); // Pan = panel contenant les numéros (0-10) les lettre sur le coter (a-j) et la grille
+		 JPanel pangauche = new JPanel();				// pangauche comme est indiqer dans le nom est le panel contenant tout les élemnts de gauche : liste/boutton/grille
+         JPanel panboutton = new JPanel();				// panboutton contient les 2 boutton pour choisir la posotion
 
 
 		
 		 
-		 
+	// création de la 1er grille (gauche)	 
 		 	for(int i=0;i<11;i++){
 		 		JLabel mi= new JLabel("          "+i);
 		 		pan.add(mi);
@@ -205,14 +205,14 @@ public class Fenetre extends JFrame{
 
                 grille[i][j].addActionListener(control);
                 grille[i][j].setIcon(new ImageIcon("src/mer.jpg"));
-                grille[i][j].setDisabledIcon(new ImageIcon("src/bateaux.jpg"));
+
             }
 
 		 }
 
 
-        JPanel pan2 = new JPanel(new GridLayout(11,11));
-		 for(int i=0;i<11;i++){
+        JPanel pan2 = new JPanel(new GridLayout(11,11));	//pan2 = panel contenant les éléments de la grille droite : numéros/chiffre/grille
+		 for(int i=0;i<11;i++){								// création de la 2em grille
 			 JLabel mi= new JLabel("          "+i);
 			 pan2.add(mi);
 		 }
@@ -274,54 +274,34 @@ public class Fenetre extends JFrame{
 
 		 }
 		 
-		 // cr�ation de tous les composants graphiques de la fen�tre
+		 // creation de tous les composants graphiques de la fenetre
 		 JPanel pandroite = new JPanel();
 		 JPanel pan6 = new JPanel();
-         panboutton.add(rb1);
-         panboutton.add(rb2);
+         panboutton.add(rb1);		// Ajout du bouton rb1(verticale) sur le panel panboutton qui va contenir les 2 bouttons de posotion
+         panboutton.add(rb2);		// Ajout du bouton rb2(horizontal) sur le panel panboutton qui va contenir les 2 bouttons de position
 
-         pangauche.setLayout(new BoxLayout(pangauche, BoxLayout.Y_AXIS));
-         pangauche.add(liste);
-         pangauche.add(panboutton);
-		 pangauche.add(pan);
+         pangauche.setLayout(new BoxLayout(pangauche, BoxLayout.Y_AXIS)); // Création du panel de gauche, le BoxLayout.Y_Axis permet de mettre chaque élément sur une ligne
+         pangauche.add(liste);												//Sur le 1er ligne = tout en haut on ajoute la liste au panel 
+         pangauche.add(panboutton);											// Sur la 2em ligne= en dessou de la liste on ajoute le panel panboutton qui contient les 2 boutton de position 
+		 pangauche.add(pan);												// Enfin en dessou des boutton on ajoute la grillr au panel 
 
-		 pan6.setLayout(new BoxLayout(pan6, BoxLayout.Y_AXIS));
-		 pan6.add(jtText);
-		 pan6.add(jtText2);
-		 pandroite.setLayout(new BoxLayout(pandroite, BoxLayout.Y_AXIS));
-		 pandroite.add(pan6);
-		 pandroite.add(pan2);
+		 pan6.setLayout(new BoxLayout(pan6, BoxLayout.Y_AXIS));				//pan6 suit le meme fonctionnement que le panel pangauche
+		 pan6.add(jtText);													// on ajoute au panel un jtText(Grille adversaire)
+		 pan6.add(jtText2);													// Ajout au panel du jtText vide
+		 pandroite.setLayout(new BoxLayout(pandroite, BoxLayout.Y_AXIS));	
+		 pandroite.add(pan6);												// sur le pandroite on ajoute en haut le pan6 qui contient 2 ligne :  les 2 jtText ajouter ci dessu
+		 pandroite.add(pan2);												// sur le pandroite on ajoute en dessu des jtText la grille
 
-         JPanel pan2grille = new JPanel();
+         JPanel pan2grille = new JPanel();									// création d'un panel pan2grille qui va contenir le panelgauche et le paneldroite
          pan2grille.setLayout(new BoxLayout(pan2grille, BoxLayout.LINE_AXIS));
          pan2grille.add(pangauche);
          pan2grille.add(pandroite);
 
-         JPanel pan4 = new JPanel();
-
-
-         pan4.add(pan2grille);
+      
 
          //pan1.add(pan2,BorderLayout.EAST);
-		 setContentPane(pan4);
-		 
-		 
-	/*	
-		 
-		 JPanel p2 = new JPanel();
-		 p2.add(l1);
-		 p2.add(chro);
-		 
-		 JPanel p3 = new JPanel();
-		 p3.add(l2);
-		 p3.add(l3);
-		 
-		 JPanel global = new JPanel();
-		 global.setLayout(new BoxLayout(global, BoxLayout.Y_AXIS));
-		 global.add(p2);
-		 global.add(p1);
-		 global.add(p3);
-		 setContentPane(global);*/
+		 setContentPane(pan2grille);			// Ajout a la fenetre qui va s'afficher le panel qui contient les 2 grilles + les liste... 
+		 	
 		 
 	 }
 
