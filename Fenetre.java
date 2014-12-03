@@ -43,7 +43,7 @@ public class Fenetre extends JFrame{
     int comptnombre;
     int comptplace2=1;
     String chaine ;
-    int compFin;
+    int compFin, tour;
     JMenuItem item1,item2;
     int k=0;
     float s;
