@@ -78,6 +78,7 @@ public class ControlButton implements ActionListener {
         if (fen.comptnombre==0) {  //lorsque le placement c'est bien fait et ce rénitialise lorsqu'on choisit un nouvelle bateaux a poser grâce a liste
             if (fen.comptplace > 5) { // comtplace permet de savoir combien de bateaux on déja été poser , et le placement s'arrete lorsque les 5 bateaux sont poser (d'ou le if)
                 System.out.println("fini de placer tout les jetons");
+                fen.tour=0;
             } else {
                 fen.compteur=0;
                 while (fen.compteur < fen.compFin) {
