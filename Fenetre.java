@@ -51,6 +51,7 @@ public class Fenetre extends JFrame{
     String[] items = { "Porte-avion : 5 cases", "Croiseur : 4 cases","Contre-torpilleurs : 3 cases","Sous-marin : 3 cases","Torpilleur : 2 cases" };
     public Fenetre() {
         initAttribut();
+        DebutPartie();
         creerWidget();
         pack(); // Fixe la taille par défaut
         setVisible(true); // Affiche la fenetre
@@ -84,6 +85,9 @@ public class Fenetre extends JFrame{
         control1=new ControlListe(this);
         control2= new ControlButton2(this);
         controlL2= new ControlListe2(this);
+    }
+    public void DebutPartie(){
+        tour=0;
     }
     public void creerWidget(){
         JMenuBar barMenu = new JMenuBar();
