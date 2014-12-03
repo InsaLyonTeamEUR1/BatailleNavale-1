@@ -25,7 +25,7 @@ public class Fenetre extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	int[] order,tab;
-	JLabel l1, l2,l3,global,ci;
+	JLabel l1, l2,l3,nbtour,global,ci;
 	JButton[][] grille=  new JButton[10][10];
     JButton[][] grille2=  new JButton[10][10];
 	Dimension taille = new Dimension(150,150);
@@ -38,7 +38,7 @@ public class Fenetre extends JFrame{
 	 public ControlMenu controle;
 	 public ControlListe control1;
 	 ImageIcon image;
-	 int compteur;
+	 int compteur, tour;
 	int comptplace=0;
 	int comptnombre;
 	 String chaine ;
@@ -296,11 +296,17 @@ public class Fenetre extends JFrame{
          pan2grille.setLayout(new BoxLayout(pan2grille, BoxLayout.LINE_AXIS));
          pan2grille.add(pangauche);
          pan2grille.add(pandroite);
-
+	
+	JPanel compteurt = new JPanel();
+        compteurt.setLayout(new BoxLayout(compteurt, BoxLayout.Y_AXIS));
+        compteurt.add(pan2grille);
+        nbtour = new JLabel("Tour : "+tour);
+        compteurt.add(nbtour);
+        //pan1.add(pan2,BorderLayout.EAST);
+        setContentPane(compteurt);			// Ajout a la fenetre qui va s'afficher le panel qui contient les 2 grilles + les liste... 	
       
 
          //pan1.add(pan2,BorderLayout.EAST);
-		 setContentPane(pan2grille);			// Ajout a la fenetre qui va s'afficher le panel qui contient les 2 grilles + les liste... 
 		 	
 		 
 	 }
